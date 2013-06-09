@@ -6,7 +6,7 @@
 // ただしnの指定もこれなのでそこが問題になるのでもう大きな型でいいかな。という妥協
 typedef std::uint64_t natural;
 
-// 対象にする桁数
+// 対象にする桁モジュロマスク
 static const natural digit = 100000ll;
 
 natural cut( natural val )
