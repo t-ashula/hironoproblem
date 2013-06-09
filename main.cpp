@@ -1,10 +1,9 @@
 #include <cstdint>
 #include <iostream>
 
+#include "primefactor.h"
 
-// 5桁同士の積には十分な型ならいいのでより小さくできうるが
-// ただしnの指定もこれなのでそこが問題になるのでもう大きな型でいいかな。という妥協
-typedef std::uint64_t natural;
+using namespace sencha;
 
 // 対象にする桁モジュロマスク
 static const natural digit = 100000ll;
@@ -40,7 +39,6 @@ natural f( natural n )
 
 int main(void)
 {
-	std::cout << "f(99999) = " << f(99999ll) << std::endl;
 	std::cout << "f(27) = " << f(27ll) << std::endl;
 	std::cout << "f(1018) = " << f(1018ll) << std::endl;
 	std::cout << "f(4318285) = " << f(4318285ll) << std::endl;
