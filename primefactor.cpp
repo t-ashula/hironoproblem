@@ -1,5 +1,4 @@
-#include <cstdint>
-#include <iostream>
+#include <vector>
 
 #include "primefactor.h"
 
@@ -10,17 +9,18 @@ std::vector< natural > prime_factors( natural n )
 {
 	std::vector<natural> factors;
 
-	natural val = n;
-	for( natural i = 2; (i*i) <= n; ++i )
+	if( n <= 1 ) return std::move( factors );
+
+	for( natural i = 2; n != 1; ++i )
 	{
-		while( (val % i) == 0 )
+		while( (n % i) == 0 )
 		{
 			factors.push_back( i );
-			val /= i;
+			n /= i;
 		}
 	}
-	if( val != 1 ) factors.push_back( val );
 	return std::move( factors );
 }
 
 }	// namespace sencha
+
