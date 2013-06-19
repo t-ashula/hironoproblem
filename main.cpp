@@ -1,7 +1,10 @@
 #include <cstdint>
 #include <iostream>
 #include <cmath>
+#include <limits>
+#include <cmath>
 
+#include "natural.h"
 #include "prime.h"
 #include "primefactor.h"
 
@@ -58,9 +61,9 @@ natural f( natural n )
 	const natural factor2_ = factor2 - factor5;
 
 	natural val = 1;
-	val *= power(2, factor2_) % digit;
+	val *= power(2, factor2_);
 	val %= digit;
-	val *= power(3, factor3) % digit;
+	val *= power(3, factor3);
 	val %= digit;
 
 	// それ以後は順当に計算
@@ -68,8 +71,7 @@ natural f( natural n )
 	{
 		const natural p = seq.getPrime( i );
 		const natural factor = fact_factor( n, p );
-		const natural s = power( p, factor);
-		val *= (s % digit);
+		val *= power(p, factor);
 		val %= digit;
 	}
 	return val;
@@ -77,10 +79,13 @@ natural f( natural n )
 
 int main(void)
 {
+	// non-hardな部分はかなり高速化した
 	std::cout << "f(27) = " << f(27ll) << std::endl;
 	std::cout << "f(1018) = " << f(1018ll) << std::endl;
 	std::cout << "f(4318285) = " << f(4318285ll) << std::endl;
 	/*
+	// この方法もhardについては32bit範囲を超えるエラトステネスの篩が困難で無理がある
+	// 64bit範囲の高効率な素数の列挙があれば解決するが事はそう単純ではない
 	std::cout << "f(1000000000000) = " << f(1000000000000ll) << std::endl;
 	std::cout << "f(5638029384213847) = " << f(5638029384213847ll) << std::endl;
 	*/

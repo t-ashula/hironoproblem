@@ -3,10 +3,10 @@
 #include <cstdint>
 #include <vector>
 
+#include "natural.h"
+
 namespace sencha
 {
-
-typedef std::uint64_t natural;
 
 std::vector< natural > prime_factors( natural n );
 
